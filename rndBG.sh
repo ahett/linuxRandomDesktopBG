@@ -42,7 +42,12 @@ do
     fi
     ((i++))
 done
+rm -f pics/*.*
 
-convert in-$FILE1 in-$FILE2.jpg in-$FILE3.jpg in-$FILE4.jpg +append out-all.jpg
-
+convert $FILE1 -resize 2560x1440! -quality 100 "pics/1.jpg"
+convert $FILE2 -resize 2560x1440! -quality 100 "pics/2.jpg"
+convert $FILE3 -resize 2560x1440! -quality 100 "pics/3.jpg"
+convert $FILE4 -resize 2560x1440! -quality 100 "pics/4.jpg"
+convert "pics/4.jpg" -crop 1920x1200+0+0 "pics/4.jpg"
+convert "pics/1.jpg" "pics/2.jpg" "pics/3.jpg" "pics/4.jpg" +append "pics/all.jpg"
 echo "1: $FILE1, 2: $FILE2, 3: $FILE3, 4: $FILE4"
