@@ -4,6 +4,10 @@
 WPPTH="/home/adrian/Bilder/Wallpaper/"
 FINAL="/home/adrian/Bilder/Wallpaper/__00final.jpg"
 
+#get number of wallpapers in folder
+MAX=$(ls $WPPTH -F |grep -v / | wc -l)
+echo "$MAX"
+
 #generate four ramndom numbers
 RNG1=$(shuf -i 1-$MAX -n 1)
 RNG2=$(shuf -i 1-$MAX -n 1)
@@ -49,10 +53,10 @@ done
 convert $FILE1 -resize 2560x1440! -quality 100 "/tmp/1.jpg"
 convert $FILE2 -resize 2560x1440! -quality 100 "/tmp/2.jpg"
 convert $FILE3 -resize 2560x1440! -quality 100 "/tmp/3.jpg"
-convert $FILE4 -resize 2560x1440! -quality 100 "/tmp/4.jpg"
+convert $FILE4 -resize 2134x1200! -quality 100 "/tmp/4.jpg"
 
 #crop for the smaller monitor
-convert "/tmp/4.jpg" -crop 1920x1200+0+0 "/tmp/4.jpg"
+convert "/tmp/4.jpg" -crop 1920x1200+107+0 "/tmp/4.jpg"
 
 # compose full image
 convert "/tmp/1.jpg" "/tmp/2.jpg" "/tmp/3.jpg" "/tmp/4.jpg" +append "$FINAL"
